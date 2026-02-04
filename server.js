@@ -8,6 +8,7 @@ const logger = require("./utils/logger");
 const http = require("http");
 const { Server } = require("socket.io");
 const sendEmail = require("./utils/sendEmail");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const cron = require("node-cron");
 
@@ -57,6 +58,7 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/income", require("./routes/incomeRoutes"));
 app.use("/api/expenses", require("./routes/expenseRoutes"));
 app.use("/api/reports", require("./routes/reportRoutes"));
+app.use("/api/category", categoryRoutes);
 
 // ✅ CRON JOB - Check Due Bills & Send Email Notifications
 cron.schedule("0 0 * * *", async () => {
