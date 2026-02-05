@@ -11,14 +11,14 @@ const canEditOrDelete = (createdAt) => {
 // ✅ CREATE INCOME
 exports.createIncome = async (req, res) => {
   try {
-    const { amount, category, division, description } = req.body;
+    const { amount, category, division, description,date } = req.body;
 
     const income = new Income({
       userId: req.user.id,
       amount,
       category,
       division,
-      description,
+      description,date
     });
 
     await income.save();

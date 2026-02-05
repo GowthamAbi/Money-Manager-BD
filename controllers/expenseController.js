@@ -5,13 +5,13 @@ const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 // ✅ Add a new expense
 exports.addExpense = async (req, res) => {
   try {
-    const { amount, category, description } = req.body;
+    const { amount, category, description ,date} = req.body;
 
     const expense = new Expense({
       userId: req.user.id,
       amount,
       category,
-      description,
+      description,date
     });
 
     await expense.save();
