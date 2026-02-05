@@ -1,6 +1,6 @@
 const cors = require('cors');
 
-const allowedOrigins = ['http://localhost:5173']; // Frontend URL
+const allowedOrigins = ['http://localhost:5173']; 
 const cors = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -9,8 +9,8 @@ const cors = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods if necessary
-  allowedHeaders: ['Content-Type'], // Allow headers as needed
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type'],
 };
 
 export default cors

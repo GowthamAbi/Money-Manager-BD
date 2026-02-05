@@ -2,7 +2,7 @@ const Expense = require("../models/Expense");
 
 const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 
-// ✅ Add a new expense
+
 exports.addExpense = async (req, res) => {
   try {
     const { amount, category, description ,date} = req.body;
@@ -22,7 +22,6 @@ exports.addExpense = async (req, res) => {
   }
 };
 
-// ✅ Get all expenses
 exports.getExpenses = async (req, res) => {
   try {
     const expenses = await Expense.find({

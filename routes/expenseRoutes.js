@@ -9,16 +9,12 @@ const {
   deleteExpense,
 } = require("../controllers/expenseController");
 
-// CREATE
 router.post("/", auth, addExpense);
 
-// READ
 router.get("/", auth, getExpenses);
 
-// UPDATE (🔥 THIS WAS MISSING)
 router.put("/:id", auth, updateExpense);
 
-// DELETE (🔥 THIS WAS MISSING)
 router.delete("/:id", auth, deleteExpense);
 
 module.exports = router;

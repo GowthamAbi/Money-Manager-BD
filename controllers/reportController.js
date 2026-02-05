@@ -25,7 +25,7 @@ exports.generateCsvReport = async (req, res) => {
 
 exports.getAllReports = async (req, res) => {
     try {
-      const userId = req.user.id; // Ensure user authentication works
+      const userId = req.user.id; 
       const expenses = await Expense.find({ userId });
   
       res.json({ expenses, budgets });

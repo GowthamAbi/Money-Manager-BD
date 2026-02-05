@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// ✅ Expense Schema (One-Time Expenses)
 const expenseSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     amount: { type: Number, required: true },
@@ -10,7 +9,6 @@ const expenseSchema = new mongoose.Schema({
 },{ timestamps: true });
 
 
-// ✅ Export both models properly
 const Expense = mongoose.model("Expense", expenseSchema);
 
 

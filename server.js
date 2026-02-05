@@ -17,13 +17,13 @@ const app = express();
 const PORT =  5000;
 const server = http.createServer(app);
 
-// ✅ Connect to MongoDB
+//  Connect to MongoDB
 connectDB().catch((error) => {
   console.error("❌ MongoDB Connection Failed:", error);
   process.exit(1);
 });
 
-// ✅ WebSocket Setup
+//  WebSocket Setup
 const io = new Server(server, {
   cors: {
     origin: process.env.CLIENT_URL || "https://finance-manager-web.netlify.app",
@@ -41,7 +41,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// ✅ Middlewares
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -53,14 +53,14 @@ app.use(
 );
 app.use(logger);
 
-// ✅ API Routes
+// API Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/income", require("./routes/incomeRoutes"));
 app.use("/api/expenses", require("./routes/expenseRoutes"));
 app.use("/api/reports", require("./routes/reportRoutes"));
 app.use("/api/category", categoryRoutes);
 
-// ✅ CRON JOB - Check Due Bills & Send Email Notifications
+// CRON JOB - Check Due Bills & Send Email Notifications
 cron.schedule("0 0 * * *", async () => {
   try {
     console.log("🔄 Checking for due bills...");
@@ -82,7 +82,7 @@ cron.schedule("0 0 * * *", async () => {
           `Your bill "${bill.name}" is due on ${bill.dueDate.toDateString()}. Please pay on time.`
         );
 
-        // ✅ Emit notification via WebSocket
+        //  Emit notification via WebSocket
         io.emit("dueBillNotification", {
           title: "Due Bill Reminder",
           message: `🚨 Your bill "${bill.name}" is due soon!`,
@@ -97,7 +97,7 @@ cron.schedule("0 0 * * *", async () => {
   }
 });
 
-// ✅ Start Server
+//  Start Server
 server.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

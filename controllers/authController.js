@@ -2,7 +2,6 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// ✅ Register User
 exports.register = async (req, res) => {
   try {
     const { name, email, phone, password } = req.body;
@@ -20,7 +19,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// ✅ Login User
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -50,13 +48,13 @@ console.log("🔹 Authenticated User:", req.user);
   }
 };
 
-// ✅ Logout User
+
 exports.logout = (req, res) => {
   res.clearCookie("token");
   res.status(200).json({ message: "Logged out successfully" });
 };
 
-// ✅ Get Account Summary
+
 exports.getAccountSummary = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -68,7 +66,7 @@ exports.getAccountSummary = async (req, res) => {
   }
 };
 
-// ✅ Update Profile
+
 exports.updateProfile = async (req, res) => {
   try {
     const updates = req.body;
@@ -82,7 +80,7 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-// ✅ Upload Profile Picture
+
 exports.uploadProfilePic = async (req, res) => {
   try {
     if (!req.file) {
@@ -98,7 +96,7 @@ exports.uploadProfilePic = async (req, res) => {
 
     const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
 
-    // ✅ Ensure the database update is properly executed
+  
     const user = await User.findByIdAndUpdate(
       req.user.id,
       { $set: { profilePicture: imageUrl } },

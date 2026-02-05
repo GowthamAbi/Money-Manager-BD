@@ -2,13 +2,12 @@ const Income = require("../models/Income");
 
 const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 
-// 🔒 helper function
+
 const canEditOrDelete = (createdAt) => {
   const now = new Date();
   return now - new Date(createdAt) <= TWELVE_HOURS;
 };
 
-// ✅ CREATE INCOME
 exports.createIncome = async (req, res) => {
   try {
     const { amount, category, division, description,date } = req.body;
@@ -28,7 +27,7 @@ exports.createIncome = async (req, res) => {
   }
 };
 
-// ✅ GET USER INCOME
+
 exports.getIncome = async (req, res) => {
   try {
     const income = await Income.find({ userId: req.user.id }).sort({
@@ -40,7 +39,7 @@ exports.getIncome = async (req, res) => {
   }
 };
 
-// 🔒 UPDATE INCOME (ONLY WITHIN 12 HOURS)
+
 exports.updateIncome = async (req, res) => {
   try {
     const income = await Income.findById(req.params.id);
@@ -73,7 +72,7 @@ exports.updateIncome = async (req, res) => {
   }
 };
 
-// 🔒 DELETE INCOME (ONLY WITHIN 12 HOURS)
+
 exports.deleteIncome = async (req, res) => {
   try {
     const income = await Income.findById(req.params.id);
