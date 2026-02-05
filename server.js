@@ -26,7 +26,7 @@ connectDB().catch((error) => {
 //  WebSocket Setup
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "https://financemanagers.netlify.app/",
+    origin: process.env.CLIENT_URL || "https://financemanagers.netlify.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
